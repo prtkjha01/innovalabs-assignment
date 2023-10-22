@@ -18,6 +18,7 @@ onMounted(() => {
 const loading = ref(false);
 //Filters
 const query = ref("");
+const searchType = ref("ALL");
 //Table Data
 const users = computed(() => store.state.users);
 
@@ -28,6 +29,15 @@ const pageSize = ref(4);
 const start = ref(pageSize.value * (page.value - 1));
 const end = ref(start.value + pageSize.value);
 
+/**
+ * Sets the search type in the store.
+ *
+ * @param {type} searchType - the type of search to be set
+ * @return {void}
+ */
+const setSearchType = (): void => {
+  store.dispatch("setSearchType", searchType.value);
+};
 /**
  * Handles the search action.
  *
@@ -86,6 +96,23 @@ const handlePagination = (type: string): void => {
   <div class="users">
     <!-- Filters -->
     <div class="filters">
+      <div class="search-type-dropdown-wrapper">
+        <select
+          class="search-type-dropdown"
+          v-model="searchType"
+          name=""
+          id=""
+          @change="setSearchType"
+        >
+          <option value="ALL">All</option>
+          <option value="NAME">Name</option>
+          <option value="USERNAME">Username</option>
+          <option value="PHONE">Phone</option>
+          <option value="WEBSITE">Website</option>
+          <option value="COMPANY">Company</option>
+          <option value="ADDRESS">Address</option>
+        </select>
+      </div>
       <div class="search">
         <input
           type="search"
@@ -191,6 +218,11 @@ const handlePagination = (type: string): void => {
 .filters {
   display: flex;
   justify-content: flex-end;
+  gap: 12px;
+}
+.search-type-dropdown {
+  /* height: 28px; */
+  padding: 5px;
 }
 table {
   border-collapse: collapse;
