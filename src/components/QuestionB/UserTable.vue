@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, computed, ref } from "vue";
+import { onMounted, computed, ref, Ref, ComputedRef } from "vue";
 //@ts-ignore
 import { useStore } from "vuex";
 const store = useStore();
@@ -15,19 +15,21 @@ onMounted(() => {
     });
 });
 //Loading binding
-const loading = ref(false);
+const loading: Ref<boolean> = ref(false);
 //Filters
-const query = ref("");
-const searchType = ref("ALL");
+const query: Ref<string> = ref("");
+const searchType: Ref<string> = ref("ALL");
 //Table Data
-const users = computed(() => store.state.users);
+const users: ComputedRef<any> = computed(() => store.state.users);
 
 //Paginator Data
-const lastPage = computed(() => Math.ceil(users.value.length / pageSize.value));
-const page = ref(1);
-const pageSize = ref(4);
-const start = ref(pageSize.value * (page.value - 1));
-const end = ref(start.value + pageSize.value);
+const lastPage: ComputedRef<number> = computed(() =>
+  Math.ceil(users.value.length / pageSize.value)
+);
+const page: Ref<number> = ref(1);
+const pageSize: Ref<number> = ref(4);
+const start: Ref<number> = ref(pageSize.value * (page.value - 1));
+const end: Ref<number> = ref(start.value + pageSize.value);
 
 /**
  * Sets the search type in the store.
@@ -236,6 +238,7 @@ table {
   gap: 5px;
 }
 .search-btn {
+  cursor: pointer;
   background-color: rgb(91, 152, 0);
   color: #fff;
   border: none;
@@ -285,6 +288,9 @@ tbody {
   display: flex;
   justify-content: space-between;
   gap: 12px;
+}
+.paginator-btn {
+  cursor: pointer;
 }
 .paginator-right {
   display: flex;

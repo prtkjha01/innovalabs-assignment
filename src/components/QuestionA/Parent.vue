@@ -74,6 +74,9 @@ const passData = (payload: string): void => {
   gap: 12px;
   margin-top: 12px;
 }
+.pass-data-btn {
+  cursor: pointer;
+}
 .data-wrapper {
   position: absolute;
   top: 24px;

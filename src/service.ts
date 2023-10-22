@@ -1,5 +1,5 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 
-export const service = axios.create({
+export const service: AxiosInstance = axios.create({
   baseURL: "https://jsonplaceholder.typicode.com",
 });

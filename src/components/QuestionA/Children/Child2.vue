@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
 
-//const props =
 defineProps({
   data: {
     type: String,
@@ -47,6 +46,9 @@ const emit = defineEmits<{
 }
 .data-actions {
   margin-top: 48px;
+}
+.pass-data-btn {
+  cursor: pointer;
 }
 .data-wrapper {
   top: 12px;

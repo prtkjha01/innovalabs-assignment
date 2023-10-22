@@ -152,6 +152,7 @@ const handleSubmit = (e: Event) => {
   display: flex;
 }
 .submit-btn {
+  cursor: pointer;
   background-color: rgb(91, 152, 0);
   color: #fff;
   border: none;
